@@ -2,9 +2,9 @@
 
 #Submit this script with: sbatch wordcount.slurm
 
-#SBATCH --time=00:3:00   # walltime
-#SBATCH --ntasks=64 # number of processor cores (i.e. tasks)
-#SBATCH --nodes=4   # number of nodes
+#SBATCH --time=00:03:00   # walltime
+#SBATCH --ntasks=16 # number of processor cores (i.e. tasks)
+#SBATCH --nodes=1   # number of nodes
 #SBATCH --ntasks-per-node=16   # make sure there's 16 processors per node
 #SBATCH --mem-per-cpu=2048M   # memory per CPU core
 #SBATCH -J "Hadoop"   # job name

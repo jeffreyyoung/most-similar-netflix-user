@@ -39,6 +39,7 @@ public class NetflixUserMapper extends MapReduceBase
       String showID = values[1];
       if (entryUserID.equals(userID) && stars >= 3)
       {
+        word.set(showID);
         output.collect(showID, one);
       }
     }

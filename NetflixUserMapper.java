@@ -41,9 +41,10 @@ public class NetflixUserMapper extends MapReduceBase
       {
         word.set(showID);
         output.collect(word, one);
-        word.set("meow");
-        output.collect(word, one);
       }
     }
+
+    word.set("meow");
+    output.collect(word, one);
   }
 }

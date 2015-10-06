@@ -17,7 +17,7 @@
 
 # Compatibility variables for PBS. hadoop.py uses this variable to determine which nodes should appear in the cluster.
 export PBS_NODEFILE=`/fslapps/fslutils/generate_pbs_nodefile`
-
+#
 # These variables are set just to shorten the command below.
 export HADOOP_GROUP=/fslgroup/fslg_hadoop
 export HADOOP_PATH=/fslgroup/fslg_hadoop/hadoop-1.1.2

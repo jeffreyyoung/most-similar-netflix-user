@@ -18,6 +18,7 @@ public class NetflixUserMapper extends MapReduceBase
 
   private final IntWritable one = new IntWritable(1);
   private Text word = new Text();
+  private String userID = "";
 
   @Override
   public void configure(JobConf job)

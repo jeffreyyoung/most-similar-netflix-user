@@ -21,7 +21,7 @@ export PBS_NODEFILE=`/fslapps/fslutils/generate_pbs_nodefile`
 # These variables are set just to shorten the command below.
 export HADOOP_GROUP=/fslgroup/fslg_hadoop
 export HADOOP_PATH=/fslgroup/fslg_hadoop/hadoop-1.1.2
-
+#
 # hadoop.py will pass the quoted string into the typical hadoop command.
 # When referencing your home directory the variable ${HOME} should be used rather than '~' to ensure proper substitution.
 #  If ~ appears in a quoted string, it will not be substituted.  This could cause hadoop to look for a folder called '~'

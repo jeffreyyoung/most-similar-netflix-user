@@ -10,7 +10,7 @@ public class Netflix {
 
   public static void main(String[] args) {
     JobClient client = new JobClient();
-    JobConf conf = new JobConf(WordCount.class);
+    JobConf conf = new JobConf(Netflix.class);
     // specify output types
     conf.setOutputKeyClass(Text.class);
     conf.setOutputValueClass(IntWritable.class);

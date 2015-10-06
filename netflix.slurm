@@ -26,6 +26,6 @@ export HADOOP_PATH=/fslgroup/fslg_hadoop/hadoop-1.1.2
 # When referencing your home directory the variable ${HOME} should be used rather than '~' to ensure proper substitution.
 #  If ~ appears in a quoted string, it will not be substituted.  This could cause hadoop to look for a folder called '~'
 #  rather than your home directory.
-$HADOOP_PATH/bin/hadoop.py "jar ${HOME}/netflix/Netflix.jar Netflix ${HOME}/netflix/testinput.txt ${HOME}/compute/netflix"
+$HADOOP_PATH/bin/hadoop.py "jar ${HOME}/netflix/Netflix.jar Netflix ${HOME}/netflix/testinput.txt ${HOME}/compute/netflix 30878"
 
 exit 0

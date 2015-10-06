@@ -2,7 +2,7 @@
 
 #Submit this script with: sbatch wordcount.slurm
 
-#SBATCH --time=00:03:00   # walltime
+#SBATCH --time=00:10:00   # walltime
 #SBATCH --ntasks=16 # number of processor cores (i.e. tasks)
 #SBATCH --nodes=1   # number of nodes
 #SBATCH --ntasks-per-node=16   # make sure there's 16 processors per node

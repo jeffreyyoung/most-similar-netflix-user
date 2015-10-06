@@ -13,7 +13,7 @@
 # The PBS_NODEFILE variable is needed for the script to determine the nodelist given by slurm.
 # It is a good idea to reserve all of the processors on the node with the parameter
 #   --ntasks-per-node as seen above.
-# You should also request a minimum of 2 nodes. 
+# You should also request a minimum of 2 nodes.
 
 # Compatibility variables for PBS. hadoop.py uses this variable to determine which nodes should appear in the cluster.
 export PBS_NODEFILE=`/fslapps/fslutils/generate_pbs_nodefile`
@@ -26,7 +26,6 @@ export HADOOP_PATH=/fslgroup/fslg_hadoop/hadoop-1.1.2
 # When referencing your home directory the variable ${HOME} should be used rather than '~' to ensure proper substitution.
 #  If ~ appears in a quoted string, it will not be substituted.  This could cause hadoop to look for a folder called '~'
 #  rather than your home directory.
-$HADOOP_PATH/bin/hadoop.py "jar ${HOME}/mapreduce/WordCount/WordCount.jar WordCount ${HOME}/mapreduce/WordCount/testinput.txt ${HOME}/compute/wordcount"
+$HADOOP_PATH/bin/hadoop.py "jar ${HOME}/most-similar-netflix-user/WordCount/WordCount.jar WordCount ${HOME}/most-similar-netflix-user/testinput.txt ${HOME}/compute/wordcount"
 
 exit 0
-

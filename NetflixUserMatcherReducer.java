@@ -30,14 +30,13 @@ public class NetflixUserMatcherReducer extends MapReduceBase
         {
           this.highestUserID = key;
           this.highestSum = sum;
-          //output.collect(key, new IntWritable(sum));
         }
         output.collect(key, new IntWritable(sum));
     }
 
-    @Override
-    public void close() throws IOException
-    {
-      //output.collect(highestUserID, new IntWritable(highestSum));
-    }
+    // @Override
+    // public void close() throws IOException
+    // {
+    //   output.collect(highestUserID, new IntWritable(highestSum));
+    // }
 }

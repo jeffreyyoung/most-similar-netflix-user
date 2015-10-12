@@ -27,7 +27,7 @@ public class TopTenReducer extends MapReduceBase
             sum += value.get(); // process value
         }
 
-        topTen.put(new IntWritable(sum), key);
+        topTen.put(sum, key);
 
         if (topTen.size() > 10)
         {

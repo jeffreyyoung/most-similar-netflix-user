@@ -55,6 +55,15 @@ public class NetflixUserMatcherMapper extends MapReduceBase
         return userData;
     }
 
+    private boolean shouldEmitUser(String entryUserID, String showID, Integer stars)
+    {
+      return (!entryUserID.trim().equals(userID.trim())
+              && userData.containsKey(showID.trim())
+              && (Integer.parseInt(userData.get(showID.trim())) == stars
+                    || (Integer.parseInt(userData.get(showID.trim())) == (stars - 1))
+                    || (Integer.parseInt(userData.get(showID.trim())) == (stars + 1));
+    }
+
     @Override
     public void map(LongWritable key, Text value,
                     OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
@@ -65,7 +74,7 @@ public class NetflixUserMatcherMapper extends MapReduceBase
             String entryUserID = values[0];
             Integer stars = Integer.parseInt(values[2]);
             String showID = values[1];
-            if (!entryUserID.trim().equals(userID.trim()) && userData.containsKey(showID.trim()) && Integer.parseInt(userData.get(showID.trim())) == stars)
+            if (shouldEmitUser(entryUserID, showID, stars))
             {
                 word.set(entryUserID);
                 output.collect(word, one);

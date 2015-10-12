@@ -14,17 +14,29 @@ public class NetflixUserMatcherReducer extends MapReduceBase
 
     private int highestSum = 0;
     private String highestUserID = "";
+    private OutputCollector output;
 
     @Override
     public void reduce(Text key, Iterator values,
                        OutputCollector output, Reporter reporter) throws IOException {
 
+        this.output = output;
         int sum = 0;
         while (values.hasNext()) {
             IntWritable value = (IntWritable) values.next();
             sum += value.get(); // process value
         }
+        if (sum > highestSum)
+        {
+          highestUserID = key.get();
+          highestSum = sum;
+        }
+        //output.collect(key, new IntWritable(sum));
+    }
 
-        output.collect(key, new IntWritable(sum));
+    @Override
+    public void close()
+    {
+      output.collect(new Text(highestUserID), new IntWritable(highestSum));
     }
 }

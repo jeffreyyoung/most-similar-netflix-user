@@ -13,7 +13,7 @@ import org.apache.hadoop.mapred.Reporter;
 public class TopTenReducer extends MapReduceBase
         implements Reducer<Text, IntWritable, Text, IntWritable> {
 
-    private TreeMap<Double, Text> topTen = new TreeMap<Integer, Text>();
+    private TreeMap<Integer, Text> topTen = new TreeMap<Integer, Text>();
 
     private OutputCollector output;
 

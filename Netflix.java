@@ -71,7 +71,7 @@ public class Netflix {
     String outputFile2 = args[2];
 
     runJob1(inputFile, outputFile1, userID);
-    runJob2(inputFile, outputFile2, outputFile1);
+    runJob2(inputFile, outputFile2, outputFile1 + "/part-00000");
 
   }
 }

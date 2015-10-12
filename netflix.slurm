@@ -28,6 +28,7 @@ export HADOOP_PATH=/fslgroup/fslg_hadoop/hadoop-1.1.2
 #  rather than your home directory.
 rm -rf ${HOME}/compute/most-similar-netflix-user
 #test input: ${HOME}/most-similar-netflix-user/testinput.txt
-$HADOOP_PATH/bin/hadoop.py "jar ${HOME}/most-similar-netflix-user/Netflix.jar Netflix /fslgroup/fslg_hadoop/netflix_data.txt ${HOME}/compute/most-similar-netflix-user/output1 ${HOME}/compute/most-similar-netflix-user/output2 30878"
+#full input: /fslgroup/fslg_hadoop/netflix_data.txt
+$HADOOP_PATH/bin/hadoop.py "jar ${HOME}/most-similar-netflix-user/Netflix.jar Netflix ${HOME}/most-similar-netflix-user/testinput.txt ${HOME}/compute/most-similar-netflix-user/output1 ${HOME}/compute/most-similar-netflix-user/output2 30878"
 
 exit 0

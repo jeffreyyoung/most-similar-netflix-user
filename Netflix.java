@@ -7,17 +7,18 @@ import org.apache.hadoop.mapred.JobClient;
 import org.apache.hadoop.mapred.JobConf;
 
 public class Netflix {
-
-  public static void main(String[] args) {
+  private static void runJob1(String inputFilePath, String outputFilePath, String userID)
+  {
     JobClient client = new JobClient();
     JobConf conf = new JobConf(Netflix.class);
     // specify output types
     conf.setOutputKeyClass(Text.class);
     conf.setOutputValueClass(IntWritable.class);
-    conf.set("userID", args[2]);
+    conf.set("userID", userID);
+
     // specify input and output dirs
-    FileInputFormat.addInputPath(conf, new Path(args[0]));
-    FileOutputFormat.setOutputPath(conf, new Path(args[1]));
+    FileInputFormat.addInputPath(conf, new Path(inputFilePath));
+    FileOutputFormat.setOutputPath(conf, new Path(outputFilePath));
     // specify a mapper
     conf.setMapperClass(NetflixUserMapper.class);
     // specify a combiner. For this one we can use the reducer code
@@ -30,5 +31,47 @@ public class Netflix {
     } catch (Exception e) {
       e.printStackTrace();
     }
+
+  }
+
+  private static void runJob2(String inputFilePath, String outputFilePath, String userDataPath)
+  {
+    JobClient client = new JobClient();
+    JobConf conf = new JobConf(Netflix.class);
+    // specify output types
+    conf.setOutputKeyClass(Text.class);
+    conf.setOutputValueClass(IntWritable.class);
+    conf.set("userDataFilePath", userDataPath);
+
+    // specify input and output dirs
+    FileInputFormat.addInputPath(conf, new Path(inputFilePath));
+    FileOutputFormat.setOutputPath(conf, new Path(outputFilePath));
+    // specify a mapper
+    conf.setMapperClass(NetflixUserMatchMapper.class);
+    // specify a combiner. For this one we can use the reducer code
+    conf.setCombinerClass(NetflixUserMatchReducer.class);
+    // specify a reducer
+    conf.setReducerClass(NetflixUserMatchReducer.class);
+    client.setConf(conf);
+    try {
+      JobClient.runJob(conf);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+  }
+
+  public static void main(String[] args) {
+    JobClient client = new JobClient();
+    JobConf conf = new JobConf(Netflix.class);
+
+    String userID = args[3];
+    String inputFile = args[0];
+    String outputFile1 = args[1];
+    String outputFile2 = args[2];
+
+    runJob1(inputFile, outputFile1, userID);
+    runJob2(inputFile, outputFile2, outputFile1);
+
   }
 }

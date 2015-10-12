@@ -40,11 +40,8 @@ public class NetflixUserMapper extends MapReduceBase
       if (entryUserID.equals(userID) && stars >= 3)
       {
         word.set(showID);
-        output.collect(word, one);
+        output.collect(word, new IntWritable(stars));
       }
     }
-
-    word.set("meow");
-    output.collect(word, one);
   }
 }

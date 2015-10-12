@@ -8,7 +8,6 @@ import org.apache.hadoop.mapred.MapReduceBase;
 import org.apache.hadoop.mapred.OutputCollector;
 import org.apache.hadoop.mapred.Reducer;
 import org.apache.hadoop.mapred.Reporter;
-import org.apache.hadoop.mapred.Reducer.Context;
 
 public class NetflixUserMatcherReducer extends MapReduceBase
         implements Reducer<Text, IntWritable, Text, IntWritable> {

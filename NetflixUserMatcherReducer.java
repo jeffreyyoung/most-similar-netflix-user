@@ -26,7 +26,7 @@ public class NetflixUserMatcherReducer extends MapReduceBase
             IntWritable value = (IntWritable) values.next();
             sum += value.get(); // process value
         }
-        if (sum > 5)
+        if (sum > 100)
         {
           // this.highestUserID = key;
           // this.highestSum = sum;

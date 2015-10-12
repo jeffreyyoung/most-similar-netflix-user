@@ -62,7 +62,7 @@ public class NetflixUserMatcherMapper extends MapReduceBase
               && (
                         Integer.parseInt(userData.get(showID.trim())) == stars
                     || (Integer.parseInt(userData.get(showID.trim())) == (stars - 1))
-                    || (Integer.parseInt(userData.get(showID.trim())) == (stars + 1)));
+                    || (Integer.parseInt(userData.get(showID.trim())) == (stars + 1))));
     }
 
     @Override

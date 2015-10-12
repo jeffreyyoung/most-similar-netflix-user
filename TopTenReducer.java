@@ -15,13 +15,13 @@ public class TopTenReducer extends MapReduceBase
         implements Reducer<Text, IntWritable, Text, IntWritable> {
 
     private TreeMap<Integer, Text> topTen = new TreeMap<Integer, Text>();
-    private OutputCollector output;
+    private OutputCollector outputer;
 
     @Override
     public void reduce(Text key, Iterator values,
                        OutputCollector output, Reporter reporter) throws IOException {
 
-        this.output = output;
+        this.outputer = output;
         int sum = 0;
         while (values.hasNext()) {
             IntWritable value = (IntWritable) values.next();

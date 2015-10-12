@@ -37,7 +37,7 @@ public class NetflixUserMapper extends MapReduceBase
       String entryUserID = values[0];
       Integer stars = Integer.parseInt(values[2]);
       String showID = values[1];
-      if (entryUserID.equals(userID) && stars >= 3)
+      if (entryUserID.equals(userID))
       {
         word.set(showID);
         output.collect(word, new IntWritable(stars));

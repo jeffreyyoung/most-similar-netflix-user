@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.TreeMap;
-import java.util.*;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -15,6 +14,7 @@ public class TopTenReducer extends MapReduceBase
         implements Reducer<Text, IntWritable, Text, IntWritable> {
 
     private TreeMap<Integer, Text> topTen = new TreeMap<Integer, Text>();
+
     private OutputCollector outputer;
 
     @Override
@@ -28,21 +28,24 @@ public class TopTenReducer extends MapReduceBase
             sum += value.get(); // process value
         }
 
-        topTen.put(sum, key);
 
-        if (topTen.size() > 10)
-        {
-            topTen.remove(topTen.firstKey());
-        }
+                // topTen.put(sum, key);
+                //
+                // if (topTen.size() > 10)
+                // {
+                //     topTen.remove(topTen.firstKey());
+                // }
+
+          output.collect(key, new IntWritable(sum));
     }
 
-    @Override
-    public void close() throws IOException {
-
-        for(Map.Entry<Integer,Text> entry : topTen.entrySet()) {
-            Integer count = entry.getKey();
-            Text userID = entry.getValue();
-            outputer.collect(userID, new IntWritable(count));
-        }
-    }
+    // @Override
+    // public void close() throws IOException {
+    //
+    //     for(Map.Entry<Integer,Text> entry : topTen.entrySet()) {
+    //         Integer count = entry.getKey();
+    //         Text userID = entry.getValue();
+    //         outputer.collect(userID, new IntWritable(count));
+    //     }
+    // }
 }

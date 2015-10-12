@@ -41,7 +41,7 @@ public class NetflixUserMatcherMapper extends MapReduceBase
         HashMap<String, String> userData = new HashMap<String, String>();
 
         while (scanner.hasNextLine()) {
-            String[] columns = scanner.nextLine().split(" ");
+            String[] columns = scanner.nextLine().split("\\s+");
             if (columns.length >= 2)
                 userData.put(columns[0], columns[1]);
         }

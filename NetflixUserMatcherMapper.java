@@ -28,7 +28,7 @@ public class NetflixUserMatcherMapper extends MapReduceBase
     @Override
     public void configure(JobConf job)
     {
-        this.userDataPath = (String) job.get("useuserDataPath");
+        this.userDataPath = (String) job.get("userDataFilePath");
         try {
             this.userData = getUserData(userDataPath);
         } catch (Exception e) {

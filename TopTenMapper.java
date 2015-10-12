@@ -45,7 +45,7 @@ public class TopTenMapper extends MapReduceBase
         for(Map.Entry<Integer,Text> entry : topTen.entrySet()) {
             Integer count = entry.getKey();
             Text userID = entry.getValue();
-            outputer.collect(userID, count);
+            outputer.collect(userID, new IntWritable(count));
         }
     }
 }

@@ -17,7 +17,7 @@ public class TopTenMapper extends MapReduceBase
         implements Mapper<LongWritable, Text, Text, IntWritable> {
 
     private final IntWritable one = new IntWritable(1);
-    private TreeMap<Double, Text> topTen = new TreeMap<Integer, Text>();
+    private TreeMap<Integer, Text> topTen = new TreeMap<Integer, Text>();
     private OutputCollector<Text, IntWritable> outputer;
 
     @Override

@@ -48,7 +48,7 @@ public class NetflixUserMatcherMapper extends MapReduceBase
         while (scanner.hasNextLine()) {
             String[] columns = scanner.nextLine().split("\\s+");
             if (columns.length >= 2)
-                userData.put(columns[0], columns[1]);
+                userData.put(columns[0].trim(), columns[1].trim());
         }
         return userData;
     }
@@ -56,8 +56,6 @@ public class NetflixUserMatcherMapper extends MapReduceBase
     @Override
     public void map(LongWritable key, Text value,
                     OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
-        word.set(userDataPath);
-        output.collect(word, one);
         String line = value.toString();
         String values[] = line.split("\\s+");
         if (values.length >= 3)
@@ -65,7 +63,7 @@ public class NetflixUserMatcherMapper extends MapReduceBase
             String entryUserID = values[0];
             Integer stars = Integer.parseInt(values[2]);
             String showID = values[1];
-            if (userData.containsKey(showID) && Integer.parseInt(userData.get(showID)) == stars)
+            if (userData.containsKey(showID.trim()) && Integer.parseInt(userData.get(showID.trim())) == stars)
             {
                 word.set(entryUserID);
                 output.collect(word, one);

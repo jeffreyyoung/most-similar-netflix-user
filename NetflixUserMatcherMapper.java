@@ -59,10 +59,7 @@ public class NetflixUserMatcherMapper extends MapReduceBase
     {
       return (!entryUserID.trim().equals(userID.trim())
               && userData.containsKey(showID.trim())
-              && (
-                        Integer.parseInt(userData.get(showID.trim())) == stars
-                    || (Integer.parseInt(userData.get(showID.trim())) == (stars - 1))
-                    || (Integer.parseInt(userData.get(showID.trim())) == (stars + 1))));
+              && Integer.parseInt(userData.get(showID.trim())) == stars);
     }
 
     @Override

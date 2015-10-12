@@ -37,15 +37,15 @@ public class TopTenMapper extends MapReduceBase
                 topTen.remove(topTen.firstKey());
             }
         }
+    }
 
-        @Override
-        public void close() throws IOException {
+    @Override
+    public void close() throws IOException {
 
-            for(Map.Entry<Integer,Text> entry : topTen.entrySet()) {
-                Integer count = entry.getKey();
-                Text userID = entry.getValue();
-                outputer.collect(userID, count);
-            }
+        for(Map.Entry<Integer,Text> entry : topTen.entrySet()) {
+            Integer count = entry.getKey();
+            Text userID = entry.getValue();
+            outputer.collect(userID, count);
         }
     }
 }

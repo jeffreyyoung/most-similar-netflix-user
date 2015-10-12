@@ -36,9 +36,9 @@ public class NetflixUserMatcherMapper extends MapReduceBase
     }
 
     private static Map<String, String> getUserData(String fileName) throws Exception{
-
+        Scanner scanner;
         try {
-        Scanner scanner = new Scanner(new FileReader(fileName));
+        scanner = new Scanner(new FileReader(fileName));
       } catch (Exception e) {
         throw new Exception("can't find the file...");
       }

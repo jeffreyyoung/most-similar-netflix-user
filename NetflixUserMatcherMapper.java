@@ -24,11 +24,13 @@ public class NetflixUserMatcherMapper extends MapReduceBase
     private Text word = new Text();
     private Map<String, String> userData;
     private String userDataPath;
+    private String userID;
 
     @Override
     public void configure(JobConf job)
     {
         this.userDataPath = (String) job.get("userDataFilePath");
+        this.userID = (String) job.get("userID");
         try {
             this.userData = getUserData(userDataPath);
         } catch (Exception e) {
@@ -63,7 +65,7 @@ public class NetflixUserMatcherMapper extends MapReduceBase
             String entryUserID = values[0];
             Integer stars = Integer.parseInt(values[2]);
             String showID = values[1];
-            if (userData.containsKey(showID.trim()) && Integer.parseInt(userData.get(showID.trim())) == stars)
+            if (!entryUserID.trim().equals(userID.trim()) && userData.containsKey(showID.trim()) && Integer.parseInt(userData.get(showID.trim())) == stars)
             {
                 word.set(entryUserID);
                 output.collect(word, one);

@@ -34,7 +34,7 @@ public class Netflix {
 
   }
 
-  private static void runJob2(String inputFilePath, String outputFilePath, String userDataPath)
+  private static void runJob2(String inputFilePath, String outputFilePath, String userDataPath, String userID)
   {
     JobClient client = new JobClient();
     JobConf conf = new JobConf(Netflix.class);
@@ -42,6 +42,7 @@ public class Netflix {
     conf.setOutputKeyClass(Text.class);
     conf.setOutputValueClass(IntWritable.class);
     conf.set("userDataFilePath", userDataPath);
+    conf.set("userID", userID);
 
     // specify input and output dirs
     FileInputFormat.addInputPath(conf, new Path(inputFilePath));
@@ -71,7 +72,7 @@ public class Netflix {
     String outputFile2 = args[2];
 
     runJob1(inputFile, outputFile1, userID);
-    runJob2(inputFile, outputFile2, outputFile1 + "/part-00000");
+    runJob2(inputFile, outputFile2, outputFile1 + "/part-00000", userID);
 
   }
 }

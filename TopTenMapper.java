@@ -31,7 +31,7 @@ public class TopTenMapper extends MapReduceBase
         {
             String userID = values[0];
             Integer matches = Integer.parseInt(values[1]);
-            topTen.put(matches, Text(userID));
+            topTen.put(matches, new Text(userID));
 
             if (topTen.size() > 10)
             {

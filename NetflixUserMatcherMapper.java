@@ -28,11 +28,11 @@ public class NetflixUserMatcherMapper extends MapReduceBase
     public void configure(JobConf job)
     {
         String userDataPath = (String) job.get("useuserDataPath");
-        //try {
+        try {
             this.userData = getUserData(userDataPath);
-        // } catch (Exception e) {
+        } catch (Exception e) {
         //
-        // }
+        }
     }
 
     private static Map<String, String> getUserData(String fileName) throws Exception{

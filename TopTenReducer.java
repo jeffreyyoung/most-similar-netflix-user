@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.TreeMap;
+import java.util.*;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;

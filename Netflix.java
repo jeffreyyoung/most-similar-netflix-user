@@ -79,6 +79,7 @@ public class Netflix {
     conf.setCombinerClass(TopTenReducer.class);
     // specify a reducer
     conf.setReducerClass(TopTenReducer.class);
+    conf.setNumReduceTasks(1);
     client.setConf(conf);
     try {
       JobClient.runJob(conf);

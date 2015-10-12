@@ -14,7 +14,6 @@ public class TopTenReducer extends MapReduceBase
         implements Reducer<Text, IntWritable, Text, IntWritable> {
 
     private TreeMap<Integer, Text> topTen = new TreeMap<Integer, Text>();
-
     private OutputCollector output;
 
     @Override
@@ -27,18 +26,22 @@ public class TopTenReducer extends MapReduceBase
             IntWritable value = (IntWritable) values.next();
             sum += value.get(); // process value
         }
-        //if (sum > 5)
-        //{
-          // this.highestUserID = key;
-          // this.highestSum = sum;
-          output.collect(key, new IntWritable(sum));
-        //}
-        //output.collect(key, new IntWritable(sum));
+
+        topTen.put(new IntWritable(sum), key);
+
+        if (topTen.size() > 10)
+        {
+            topTen.remove(topTen.firstKey());
+        }
     }
 
-    // @Override
-    // public void close() throws IOException
-    // {
-    //   output.collect(highestUserID, new IntWritable(highestSum));
-    // }
+    @Override
+    public void close() throws IOException {
+
+        for(Map.Entry<Integer,Text> entry : topTen.entrySet()) {
+            Integer count = entry.getKey();
+            Text userID = entry.getValue();
+            outputer.collect(userID, new IntWritable(count));
+        }
+    }
 }

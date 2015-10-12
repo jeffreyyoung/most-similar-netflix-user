@@ -13,7 +13,7 @@ public class NetflixUserMatcherReducer extends MapReduceBase
         implements Reducer<Text, IntWritable, Text, IntWritable> {
 
     private int highestSum = 0;
-    private Text highestUserID = "";
+    private Text highestUserID;
     private OutputCollector output;
 
     @Override

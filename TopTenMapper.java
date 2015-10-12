@@ -33,7 +33,7 @@ public class TopTenMapper extends MapReduceBase
             Integer matches = Integer.parseInt(values[1]);
             topTen.put(matches, new Text(userID));
 
-            if (topTen.size() > 10)
+            if (topTen.size() > 5)
             {
                 topTen.remove(topTen.firstKey());
             }

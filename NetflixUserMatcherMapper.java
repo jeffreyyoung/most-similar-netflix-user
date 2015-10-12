@@ -23,11 +23,12 @@ public class NetflixUserMatcherMapper extends MapReduceBase
     private final IntWritable one = new IntWritable(1);
     private Text word = new Text();
     private Map<String, String> userData;
+    private String userDataPath;
 
     @Override
     public void configure(JobConf job)
     {
-        String userDataPath = (String) job.get("useuserDataPath");
+        this.userDataPath = (String) job.get("useuserDataPath");
         try {
             this.userData = getUserData(userDataPath);
         } catch (Exception e) {
@@ -55,7 +56,8 @@ public class NetflixUserMatcherMapper extends MapReduceBase
     @Override
     public void map(LongWritable key, Text value,
                     OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
-
+        word.set(userDataPath);
+        output.collect(word, one);
         String line = value.toString();
         String values[] = line.split("\\s+");
         if (values.length >= 3)

@@ -47,11 +47,11 @@ public class Netflix {
     FileInputFormat.addInputPath(conf, new Path(inputFilePath));
     FileOutputFormat.setOutputPath(conf, new Path(outputFilePath));
     // specify a mapper
-    conf.setMapperClass(NetflixUserMatchMapper.class);
+    conf.setMapperClass(NetflixUserMatcherMapper.class);
     // specify a combiner. For this one we can use the reducer code
-    conf.setCombinerClass(NetflixUserMatchReducer.class);
+    conf.setCombinerClass(NetflixUserMatcherReducer.class);
     // specify a reducer
-    conf.setReducerClass(NetflixUserMatchReducer.class);
+    conf.setReducerClass(NetflixUserMatcherReducer.class);
     client.setConf(conf);
     try {
       JobClient.runJob(conf);
